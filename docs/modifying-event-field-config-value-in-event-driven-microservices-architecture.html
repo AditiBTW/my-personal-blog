@@ -72,7 +72,7 @@
 					<div class="col-md-10">
 						<a class="link-dark" href="author.html">Aditi Bhonsle</a>
 						<span class="author-description">Author</span><br/>
-						<span class="post-date">28 July 2022</span><span class="dot"></span><span class="post-read">6 min read</span>
+						<span class="post-date">29 July 2022</span><span class="dot"></span><span class="post-read">6 min read</span>
 					</div>
 				</div>
 				<!-- End Top Menta -->
@@ -101,8 +101,8 @@
 					<br/>
 					Now, let's assume we have one such event EventAlpha having a field key_alpha which can have any one of configured values: ALPHA1, ALPHA2 ...
 					We discovered that the dev team woking on microservice (Service-E) has checked the configuration value for key_alpha to Alpha23. 
-					According to our clean code practises, the value for for key_alpha should be ALPHA23. 
-					Hence, we need to refactor the configuration for key_alpha.
+					According to naming conventions of clean code practises, the value for key_alpha should be ALPHA23.
+					Hence, we need to refactor Alpha23 to ALPHA23 for maintaining better consistency, clarity and convenience while writing code.
 					<br/>
 					<br/>
 					<blockquote>
@@ -115,7 +115,7 @@
 					Also we did not find any logic in Service-B and Service-C that used value of field key_alpha of EventAlpha, so we changed the configuration value to ALPHA23 and made respective changes in Service-A.
 					<br/>
 					<br/>
-					After pushing the code changes, we got may discrepancies arising due to change the configuration value to ALPHA23.
+					After pushing the code changes, we got many discrepancies arising due to change the configuration value to ALPHA23.
 					On analysing the discrepancies we found:
 					<br/>
 					1. Other teams working on Service-B and Service-C had merged their feature changes in respective repos. The newly added changes had logic which triggered different events based on the value received in key_alpha of EventAlpha.
@@ -126,11 +126,11 @@
 					On further analysis, we found that the new set of events triggered using values of key_alpha in Service-B, Service-C and Service-D were then consumed by another set of microservices(Service-J, Service-E, Service-K).
 					<br/>
 					<br/>
-					We had to consider one of the following approaches to resolve the discrepancy:
+					We have to now consider one of the following approaches to resolve the discrepancy:
 					<br/>
 					1. Revert the code changes related to configuration values of key_alpha.
 					<br/>
-					2. Propagate the correction code for configuration changes of key_alpha across all directly and indirectly dependent microservices.
+					2. Propagate the correction code related to configuration changes of key_alpha across all directly and indirectly dependent microservices.
 					<br/>
 					The second approach is extremely difficult, time-consuming and cause blockage for dev teams working on respective services.
 					Hence, we chose first approach and reverted our code changes for key_alpha value Alpha23.
@@ -138,11 +138,11 @@
 					<br/>
 					The key learnings from this were:
 					<br/>
-					1. Ensure proper code conventions are followed which introducing new configuration values for event field.
+					1. Ensure proper code conventions are followed which introducing new configuration values for every event field.
 					<br/>
-					2. When we need to modify an event field value, we need to throughly analyse all the microservices consuming that event field (direclty/indirectly).
+					2. When we need to modify an event field value, we need to throughly analyse all the microservices consuming that event field (directly/indirectly).
 					<br/>
-					3. Also communicate with respective teams working on the dependent micro-services to understand if any ongoing development uses that field value.
+					3. Also communicate with respective teams working on the dependent microservices to understand if any ongoing development uses that event field value.
                     <br/>
 				</body>
 			</div>
