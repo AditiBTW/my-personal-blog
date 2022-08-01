@@ -118,19 +118,32 @@
 					After pushing the code changes, we got many discrepancies arising due to change the configuration value to ALPHA23.
 					On analysing the discrepancies we found:
 					<br/>
-					1. Other teams working on Service-B and Service-C had merged their feature changes in respective repos. The newly added changes had logic which triggered different events based on the value received in key_alpha of EventAlpha.
+					<ul>
+						<li>
+							Other teams working on Service-B and Service-C had merged their feature changes in respective repos. The newly added changes had logic which triggered different events based on the value received in key_alpha of EventAlpha.
+						</li>
+						<li>
+							Another microservice (Service-D) that was created to record and trace events which are consumed across various microservices (Service-A, Service-B ...) had now started consuming key_alpha field values to analyse for occurance of different configuration values.
+						</li>
+					</ul>
 					<br/>
-					2. Another microservice (Service-D) was created to record and trace events that are consumed across various microservices (Service-A, Service-B ...) had now started consuming key_alpha field values to analyse for occurance of different configuration values.
-					<br/>
-					<br/>
-					On further analysis, we found that the new set of events triggered using values of key_alpha in Service-B, Service-C and Service-D were then consumed by another set of microservices(Service-J, Service-E, Service-K).
-					<br/>
+					On further analysis,
+					<ul>
+						<li>
+							We found that the new set of events triggered using values of key_alpha in Service-B, Service-C and Service-D were then consumed by another set of microservices(Service-J, Service-E, Service-K).
+						</li>
+					</ul> 
 					<br/>
 					We have to now consider one of the following approaches to resolve the discrepancy:
 					<br/>
-					1. Revert the code changes related to configuration values of key_alpha.
-					<br/>
-					2. Propagate the correction code related to configuration changes of key_alpha across all directly and indirectly dependent microservices.
+					<ul>
+						<li>
+							Revert the code changes related to configuration values of key_alpha.
+						</li>
+						<li>
+							Propagate the correction code related to configuration changes of key_alpha across all directly and indirectly dependent microservices.
+						</li>
+					</ul>
 					<br/>
 					The second approach is extremely difficult, time-consuming and cause blockage for dev teams working on respective services.
 					Hence, we chose first approach and reverted our code changes for key_alpha value Alpha23.
@@ -138,11 +151,17 @@
 					<br/>
 					The key learnings from this were:
 					<br/>
-					1. Ensure proper code conventions are followed which introducing new configuration values for every event field.
-					<br/>
-					2. When we need to modify an event field value, we need to throughly analyse all the microservices consuming that event field (directly/indirectly).
-					<br/>
-					3. Also communicate with respective teams working on the dependent microservices to understand if any ongoing development uses that event field value.
+					<ul>
+						<li>
+							Ensure proper code conventions are followed which introducing new configuration values for every event field.
+						</li>
+						<li>
+							When we need to modify an event field value, we need to throughly analyse all the microservices consuming that event field (directly/indirectly).
+						</li>
+						<li>
+							Also communicate with respective teams working on the dependent microservices to understand if any ongoing development uses that event field value.
+						</li>
+					</ul>
                     <br/>
 				</body>
 			</div>
