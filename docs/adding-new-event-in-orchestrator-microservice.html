@@ -94,14 +94,24 @@
 					 <br/>
 					 Let's assume we have a microservice [Service-1] which interacts with other microservices using events.
                      Now Service-1 sends request to Service-2 to get some data, say record details for given user and when data is retrieved and sent to Service-1 successfully, Service-2 produces an event [Event-step-completed] which is consumed by Service-1.
-                     Since response from Service-2 requires a lot of time, we now had to implement a new business use case were we need to produce a new event [Event-step-not-completed] from Service-1 when time-limit exceeds which is then consumed by the Service-1.
-                     <br/>
-					  Kafka is primarily used to produce and consume these events in these microservices.
+					 <br/>
+					  Kafka is primarily used to stream the events that are produced and consumed within these microservices.
+					 <br/>
+					 Task:
+					 <br/>
+					 We found that Service-1 waits for response from Service-2 which impacted Service-1's performance and responsiveness to users.
+					 Also, depending on the load of requests on Service-2, the response time of request sent by Service-1 varied a lot.
+					 <br/>
+					 Resolution:
+					 <br/>
+					 We can up with a strategy to introduce a time-limit so that Service-1 waits for certain time within which is we get the response from Service-2, we will produce Event-step-completed from Service-2 otherwise Service-1 will produce Event-step-not-completed which is then consume by consumers of Service-1.
 					<br/>
                      We created the new event [Event-step-not-completed] using pre-existing event interface and added logic to generate event from Service-1 after pre-defined time-limit exceeds.
                      Then, we checked for the all the topics consumed by the consumers in Service-1 and assigned event [Event-step-not-completed] to topic [Topic-step-not-completed].
                      We added logic in the consumer of Service-1 to consume event [Event-step-not-completed].
                      <br/>
+					 Result:
+					 <br/>
                      After creating the event [Event-step-not-completed] for the Service-1, we found that
                      <ul>
                         <li>We have improved the response time for Service-1 as we only wait for response from Service-2 for pre-defined time-limit after which we produce Event-not-completed.</li>
