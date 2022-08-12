@@ -98,7 +98,7 @@
 					 We found that Service-1 waits for response from Service-2 which impacted Service-1's performance and responsiveness to users.
 					 Also, depending on the load of requests on Service-2, the response time of request sent by Service-1 varied a lot.
 					 <br/>
-					 We came up with a strategy to introduce a time-limit so that Service-1 waits for certain time within which is we get the response from Service-2, we will produce Event-step-completed from Service-2 otherwise Service-1 will produce Event-step-not-completed which is then consumed by respective consumer of Service-1.
+					 We came up with a strategy to introduce a time-limit so that Service-1 waits for certain time within which if we get the response from Service-2, we will produce event [Event-step-completed] from Service-2 otherwise Service-1 will produce event [Event-step-not-completed] which is then consumed by respective consumer of Service-1.
 					<br/>
                      We created the new event [Event-step-not-completed] using pre-existing event interface and added logic to produce Event-step-not-completed from Service-1 when response is not received from Service-2 within pre-defined time-limit.
                      Next, we checked for the all the topics consumed by the consumers in Service-1 and assigned event [Event-step-not-completed] to the topic [Topic-step-not-completed].
@@ -107,7 +107,7 @@
                      After creating the event [Event-step-not-completed] for the Service-1, we have
 					 <br/>
                      <ul>
-                        <li>Improved the response time for Service-1 as we only wait for response from Service-2 for pre-defined time-limit after which we produce Event-not-completed.</li>
+                        <li>Improved the response time for Service-1 as we only wait for response from Service-2 for pre-defined time-limit after which we produce Event-step-not-completed.</li>
                      </ul>
 					 After analysing, we found that we can further enhance our orchestrator microservice by
 					 <br/>
