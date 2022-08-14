@@ -108,10 +108,10 @@
 						Analysing the interactions between these microservices, we found that
 						<ul>
 							<li>There is a central component called orchestrator which coordinates the activities of other microservices. This component interacts with rest of the microservices using Kafka events.</li>
-							<li>There is are various steps for every user journey defined within orchestrator that helps control the business operations. The steps can be further segregated into
+							<li>There are various steps for every user journey defined within orchestrator that helps control the business operations. The steps can be further segregated into
 								<ul>
 									<li>User step requiring user action like providing user data, clicking submit button etc.</li>
-									<li>System step that can be executed without user intervention, like validating field input, producing acnowledgement when a step completes.</li>
+									<li>System step that can be executed without user intervention, like validating field input, producing acknowledgement when a step completes.</li>
 								</ul>
 							</li>
 							<li>There are some steps which needs user meta data like user address, phone number, bank details etc. to execute itself. There were times when a considerable delay due to network load etc. while giving required user data back to the services, resulted in a less robust application and reduced it's responsiveness to users.</li>
