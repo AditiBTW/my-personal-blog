@@ -90,32 +90,86 @@
 				<body>
 					Hi everyone, in this blog I'll be sharing how we added new event in our orchestrator microservice.
 					 <br/>
-					 Let's assume we have a microservice [Service-1] which interacts with other microservices using events.
-                     Now Service-1 sends request to Service-2 to get some data, say record details for given user and when data is retrieved and sent to Service-1 successfully, Service-2 produces an event [Event-step-completed] which is consumed by Service-1.
-					 <br/>
-					  Kafka is primarily used to stream the events that are produced and consumed within these microservices.
-					 <br/>
-					 We found that Service-1 waits for response from Service-2 which impacted Service-1's performance and responsiveness to users.
-					 Also, depending on the load of requests on Service-2, the response time of request sent by Service-1 varied a lot.
-					 <br/>
-					 We came up with a strategy to introduce a time-limit so that Service-1 waits for certain time within which if we get the response from Service-2, we will produce event [Event-step-completed] from Service-2 otherwise Service-1 will produce event [Event-step-not-completed] which is then consumed by respective consumer of Service-1.
-					<br/>
-                     We created the new event [Event-step-not-completed] using pre-existing event interface and added logic to produce Event-step-not-completed from Service-1 when response is not received from Service-2 within pre-defined time-limit.
-                     Next, we checked for the all the topics consumed by the consumers in Service-1 and assigned event [Event-step-not-completed] to the topic [Topic-step-not-completed].
-                     We added logic in the consumer of Service-1 to consume event [Event-step-not-completed] and handle further processes for these users.
-					 <br/>
-                     After creating the event [Event-step-not-completed] for the Service-1, we have
-					 <br/>
-                     <ul>
-                        <li>Improved the response time for Service-1 as we only wait for response from Service-2 for pre-defined time-limit after which we produce Event-step-not-completed.</li>
-                     </ul>
-					 After analysing, we found that we can further enhance our orchestrator microservice by
-					 <br/>
-					 <ul>
-						<li>Implementing event [Event-step-not-completed] for other steps in our microservice [Service-1] and create a check-list of completed steps, which can be used to identify the step where our orchestrator microservice [Service-1] fails.</li>
-						<li>Adding a new functionality to resume any process in Service-1 from the last step which is completed in the check-list.</li>
-					 </ul>
-					 <br/>
+					 <p>
+						Let's understand our business use-case using ShoppersPoint, an e-commerse application.
+					 	ShoppersPoint has many microservices that interact with one another using events.
+						Kafka is used as message broker to stream the events being produced and consumed within these microservices.
+					 </p>
+					 <h4>Application Scenario</h4>
+					 <p>
+						At ShoppersPoint, customers can browse through a range products and services listed on their website, select desired products and add them to cart, book a vendor from list of vendors for services like house-keeping, baby-sitting... and add the booked services to cart, avail offers & discounts on a variety of products and services.
+						Customers can check all items in cart, make any modifications if necessary and proceed to checkout.
+						During checkout, customer gets a prompt to register/login, in case of a new customer or if any customer has not logged into their ShoppersPoint account.
+						Upon registering/ logging into ShoppersPoint account, the customer proceeds to pay for the items in the cart with offers/discounts if applicable.
+					 </p>
+					 <h4>Problem Statement</h4>
+					 <p>
+						ShoppersPoint wants to enhance customer experience by increasing responsiveness of the currrent application. ShoppersPoint can be segregated into various microservices like catalog service, user service, cart service, payment service etc.
+						Analysing the interactions between these microservices, we found that
+						<ul>
+							<li>There is a central component called orchestrator which coordinates the activities of other microservices. This component interacts with rest of the microservices using Kafka events.</li>
+							<li>There is are various steps for every user journey defined within orchestrator that helps control the business operations. The steps can be further segregated into
+								<ul>
+									<li>User step requiring user action like providing user data, clicking submit button etc.</li>
+									<li>System step that can be executed without user intervention, like validating field input, producing acnowledgement when a step completes.</li>
+								</ul>
+							</li>
+							<li>There are some steps which needs user meta data like user address, phone number, bank details etc. to execute itself. There were times when a considerable delay due to network load etc. while giving required user data back to the services, resulted in a less robust application and reduced it's responsiveness to users.</li>
+						</ul>
+					 </p>
+					 <h4>How can we improve responsiveness and performance of our application?</h4>
+					 <p>
+						We came up with a strategy to introduce a time-limit so that the steps requiring user meta data waits for certain time interval within which if they get the requested user details, an acknowledgement event is produced.
+						Otherwise a failed event is produced for exceeding alloted time-limit and requests orchestrator to retry the failed step.
+						<br/>
+						<br/>
+						We made following changes in
+						<ul>
+							Microservices requesting for user data
+							<li>Created failed event.</li>
+							<li>Added time-limit-exceeds error code to existing error codes.</li>
+							<li>Registered for time-limit just before requesting user details from user-service.</li>
+							<li>Added logic in producers to produce acknowledgement event if user-service returns requested user details within time-limit.</li>
+							<li>Added logic in producers to produce failed event if user-service fails to give requested user details within time-limit.</li>
+						</ul>
+						<ul>
+							Orchestrator
+							<li>Added logic orchestrator to allow customers to retry if any step fails due to time-limit exceeded error and produce events for success and failed scenarios.</li>
+							<li>When orchestrator produces success event, the ui-service acknowledges to customers that their current step has executed successfully.</li>
+							<li>When orchestrator produces failed event due to time-limit exceeded error, the ui-service informs the customers that their current step has failed and provides retry option to try again.</li>
+						</ul>
+						<ul>
+							Customer UI (ui-service)
+							<li>Added logic in consumer to redirect to retry page when failed event due to time-limit exceeded error is consumed from orchestrator.</li>
+						</ul>
+					 </p>
+					 <h4>Impact on business</h4>
+					 <p>
+						The performance and responsiveness of ShoppersPoint application improved because of introduction of time limit for steps requiring user details from user-service.
+						<br/>
+						Improved customer experience as they had minimalistic waiting time and got instant feedback on whether their current step had executed successfully or not.
+						In case of failure due to time-limit exceeded, they were able to successfully retry that step and get acknowledgement / success feedback.
+					 </p>
+					 <h4>Future scope</h4>
+					 <p>
+						Upon combining our analysis of orchestrator and various customer & business feedback, we found that we could further enhance our application by
+						<ul>
+							<li>
+								Creating a checklist of acknowledged steps in orchestrator to track and debug any failed step.
+							</li>
+							<li>
+								Adding a new functionality in orchestrator to resume any process from the last acknowledged/successful step in the check-list.
+							</li>
+							<li>
+								Create a new microservice called observer-service that consumes of failed events with error codes for various steps requesting data from user-service and in general.
+								This can be used to analyse the occurance of various error codes for the steps along with tracking occurance of failed steps and respective error codes.
+							</li>
+							<li>
+								The observer-service can be enhanced further to consume the no of retries for the steps with retry option and respective error codes.
+								This can be used to analyse the effectiveness of having retry option for various steps and error codes.
+							</li>
+						</ul>
+					 </p>
 				</body>
 			</div>
 			<!-- End Post Content -->
