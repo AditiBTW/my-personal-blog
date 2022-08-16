@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="assets/img/favicon.ico">
+<title>My Personal Blog</title>
+<!-- Bootstrap core CSS -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="assets/css/mediumish.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Begin Nav
+================================================== -->
+<nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="container">
+	<!-- Begin Logo -->
+	<a class="navbar-brand" href="index.html">
+	<img src="assets/img/logo.png" alt="logo">
+	</a>
+	<!-- End Logo -->
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<!-- Begin Menu -->
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item active">
+			<a class="nav-link" href="index.html">Stories <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="index.html">Post</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="author.html">Author</a>
+			</li>
+		</ul>
+		<!-- End Menu -->
+		<!-- Begin Search -->
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search">
+			<span class="search-icon"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path></svg></span>
+		</form>
+		<!-- End Search -->
+	</div>
+</div>
+</nav>
+<!-- End Nav
+================================================== -->
+
+<!-- Begin Article
+================================================== -->
+<div class="container">
+	<div class="row">
+
+		<!-- Begin Post -->
+		<div class="col-md-8 col-md-offset-2 col-xs-12">
+			<div class="mainheading">
+
+				<!-- Begin Top Meta -->
+				<div class="row post-top-meta">
+					<div class="col-md-2">
+						<a href="author.html"><img class="author-thumb" src="assets/img/logo/pen-writing.jpg" alt="Aditi Bhonsle"></a>
+					</div>
+					<div class="col-md-10">
+						<a class="link-dark" href="author.html">Aditi Bhonsle</a>
+						<span class="author-description">Author</span><br/>
+						<span class="post-date">16 August 2022</span><span class="dot"></span><span class="post-read">10 min read</span>
+					</div>
+				</div>
+				<!-- End Top Menta -->
+
+				<h1 class="posttitle">Adding new step in orchestrator microservice</h1>
+
+			</div>
+
+			<!-- Begin Featured Image -->
+			<img class="featured-image img-fluid" src="assets/img/demopic/pexels-cottonbro-4065891.jpg" alt="">
+			<!-- End Featured Image -->
+
+			<!-- Begin Post Content -->
+			<div class="article-post">
+				<body>
+					<p>
+					Hi everyone, in this blog I'll be sharing how we can add a new step in our orchestrator microservice.
+					<br/>
+					An orchestrator acts as a central component which manages/coordinates activities of various microservices using messaging system.
+					Addition of new step might result in modification to orchestrator behaviour which closely reflects the manner in which business wants to perform their operations.
+					</p>
+					<h5>Why do business ask for modifying existing orchestrator behaviour?</h5>
+					<p>
+					First, we need to understand that the way business performs their operations are bound to change over time.
+					As businesses grows, they need to make changes to their's processes to sustain and scale themselves.
+					In this blog, I've touched upon the addition of new step in existing orchestrator behaviour.
+					<br/>
+						<blockquote>
+							As any business grows, they may face challenges that can be solved by altering the existing processes and making way for more efficient and scalable business operations.
+						</blockquote>
+					</p>
+					<h5>Reasons for adding new step in orchestrator flow (Sequence of steps)</h5>
+					<p>
+						<ul>
+							<li>Business use case needs to integrate with an external 3rd party API / microservice to support improvisation of existing orchestrator flow.</li>
+							<li>Business wants to split a step in existing orchestrator flow into 2 consecutive steps which can be executed in existing sequence.</li>
+						</ul>
+					Let's understand more about the first part which forms the basis for most of business needs requiring orchestrator to make modification to it's existing behaviour whereas the second part will be covered by our specific use case.
+					</p>
+					<h5>
+					Let's consider following examples
+					</h5>
+					<p>
+						<ul>
+							<li>
+								A business has a packaging unit and wants to become more efficient in packaging and auditing packaged items.
+							</li>
+							Introducing a step of adding bar code to every package is extremely helpful in improving overall productivity, segregation of packaged units while maintaining a digital record of packaged items.
+							<li>
+								A business wants to enhance security of it's users by adding two-factor authentication to it's existing application.
+							</li>
+							We have an orchestrator microservice with existing user journey steps and two-factor authentication step is added to registrating new users, enabling secure login for existing users and authenticating every user login that has enable two-factor authentication.
+						</ul>
+						<blockquote>
+							Adding some steps to existing business operations can add value to business by either helping them in improve the efficiency of their business operations or enhancing the user experience of their services.
+						</blockquote>
+						The main difference between the two examples is the impact of the additonal step on the businesses.
+						<ul>
+							<li>
+								In first case, the added step improves efficiency in terms of how the business processes and operations are handled.
+								Additional step has cascading effect on the subsequent steps of the business.
+							</li>
+							<li>
+								In second case, the addional step improves security of users and adds value to user experience.
+								As we have integration with external APIs/ microservice, we have to wait for the response/ completion of any steps within external microservice before we can proceed with original business procedure.
+							</li>
+						</ul>
+					</p>
+					<h5>Let's come back to our business requirement</h5>
+					<p>
+					CoffeeCorner, a coffee cafe has opened an online store to take orders from customers.
+					Broadly, CoffeeCorner can be categorised into various components that interact with a central component called orchestrator using messaging system.
+					Kafka helps stream events (messages) that are produced and consumed by orchestrator and respective microservices.
+					Based on the existing business model, the orchestrator communicates with the ui-service where the customer chooses a desired product (coffee & cakes) and place an order.
+					After an order is placed, the ui-service produced an event to communicate with the orchestrator and schedule processes to fulfill the customer's order.
+					After fulfillment, the order is packaged and delivered to customer.
+					<br/>
+					Now CoffeeCorner wants to enhance it's existing processes by improving efficiency of it's business processes.
+					Upon through technical analysis, we found that order fulfillment and packaging were two sub-tasks of a single step in orchestrator flow.
+					After communicating the same with CoffeeCorner, we found that this had happened because
+					<ul>
+						<li>CoffeeCorner was a small family business where order fulfilment and packaging was done together in a single step.</li>
+						<li>This practise was continued even after scaling their business as they wanted to focus on gaining more customers and cutting down their operations cost.</li>
+					</ul>
+					After through internal discussion, CoffeeCorner decided to split that step in consideration of
+					<ul>
+						<li>Improving tracability of issues regarding that particular step since it failed whenever there was issues with order fulfilment or packaging.</li>
+						<li>Having future possibility improving efficiency via automated packaging of their orders.</li>
+					</ul>
+
+					 Code changes in orchestrator
+					<ul>
+						<li>
+							Modified that step to retain sub-task order fulfillment.
+						</li>
+						<li>
+							Added a new step for the sub-task packaging step between order fulfilment step and delivery step.
+						</li>
+						<li>
+							We added logic in producer to produced events to communicate success and failure scenarios for order fulfillment step and packaging step to consumer of orchestrator.
+						</li>
+						<li>
+							We added logic in consumer of orchestrator to consume events from order fulfillment step and packaging step.
+						</li>
+					</ul>
+					Impact on CoffeeCorner
+					<ul>
+						<li>We were able to deliver value to CoffeeCorner</li>
+						<ul>
+							<li>Effective tracking and debuging of issues relate to order fulfilment and packaging.</li>
+							<li>Positive customer experience, many customers were happy with improved responsiveness and lesser wait-time for order fulfilment and packaging.</li>
+							<li>Ease of adoption of automated packaging in future business expansion.</li>
+						</ul>
+					</ul>
+					<br/>
+					The key learning from this were:
+					<br/>
+						<ul>
+							<li>
+								Business has to modify existing business procedure to enhance it's products and services, improve customer experience and build scalable, efficient solutions.
+							</li>
+							<li>
+								Addition of a new step in orchestrator with examples of business use cases and their impact on businesses.
+							</li>
+						</ul>
+					<br/>
+					</p>
+				</body>
+			</div>
+			<!-- End Post Content -->
+
+			<!-- Begin Tags -->
+			<div class="after-post-tags">
+				<ul class="tags">
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Growth Mindset</a></li>
+					<li><a href="#">Productivity</a></li>
+					<li><a href="#">Personal Growth</a></li>
+				</ul>
+			</div>
+			<!-- End Tags -->
+
+		</div>
+		<!-- End Post -->
+
+	</div>
+</div>
+<!-- End Article
+================================================== -->
+
+<div class="hideshare"></div>
+
+
+<!-- Begin Footer
+================================================== -->
+<div class="container">
+	<div class="footer">
+		<p class="pull-left">
+			 Copyright &copy; 2022 My Personal Blog
+		</p>
+		<p class="pull-right">
+			Mediumish Theme taken from <a target="_blank" href="https://www.wowthemes.net">WowThemes.net</a>
+		</p>
+		<div class="clearfix">
+		</div>
+	</div>
+</div>
+<!-- End Footer
+================================================== -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="assets/js/mediumish.js"></script>
+</body>
+</html>
+ 
