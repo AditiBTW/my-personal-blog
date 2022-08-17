@@ -143,21 +143,23 @@
 					</p>
 					<h5>Let's come back to our business requirement</h5>
 					<p>
-					CoffeeCorner, a coffee cafe has opened an online store to take orders from customers.
-					Broadly, CoffeeCorner can be categorised into various components that interact with a central component called orchestrator using messaging system.
-					Kafka helps stream events (messages) that are produced and consumed by orchestrator and respective microservices.
+					A coffee cafe has opened an online store to take orders from customers.
+					Broadly, this application can be categorised into various components that interact with a central component called orchestrator using messaging system.
+					In this application, Kafka helps stream events (messages) that are produced and consumed by orchestrator and respective microservices.
+					<br/>
 					Based on the existing business model, the orchestrator communicates with the ui-service where the customer chooses a desired product (coffee & cakes) and place an order.
 					After an order is placed, the ui-service produced an event to communicate with the orchestrator and schedule processes to fulfill the customer's order.
 					After fulfillment, the order is packaged and delivered to customer.
 					<br/>
-					Now CoffeeCorner wants to enhance it's existing processes by improving efficiency of it's business processes.
+					Now, the business wants to enhance their online services by improving efficiency and create more customer demand for their business.
 					Upon through technical analysis, we found that order fulfillment and packaging were two sub-tasks of a single step in orchestrator flow.
-					After communicating the same with CoffeeCorner, we found that this had happened because
+					After communicating the same with the business representatives, we found that this had happened because
 					<ul>
-						<li>CoffeeCorner was a small family business where order fulfilment and packaging was done together in a single step.</li>
-						<li>This practise was continued even after scaling their business as they wanted to focus on gaining more customers and cutting down their operations cost.</li>
+						<li>The business was initially run as a small family business where order fulfilment and packaging was done together in a single step.</li>
+						<li>This practise is continued even after scaling their business as they wanted to focus on gaining more customers while cutting down their operations cost.</li>
+						<li>They also followed the same when they designed and built their own online store application.</li>
 					</ul>
-					After through internal discussion, CoffeeCorner decided to split that step in consideration of
+					After through internal discussion, the business decided to split that step in consideration of
 					<ul>
 						<li>Improving tracability of issues regarding that particular step since it failed whenever there was issues with order fulfilment or packaging.</li>
 						<li>Having future possibility improving efficiency via automated packaging of their orders.</li>
@@ -177,9 +179,9 @@
 							We added logic in consumer of orchestrator to consume events from order fulfillment step and packaging step.
 						</li>
 					</ul>
-					Impact on CoffeeCorner
+					Impact on the business
 					<ul>
-						<li>We were able to deliver value to CoffeeCorner</li>
+						<li>We were able to deliver value to the business:</li>
 						<ul>
 							<li>Effective tracking and debuging of issues relate to order fulfilment and packaging.</li>
 							<li>Positive customer experience, many customers were happy with improved responsiveness and lesser wait-time for order fulfilment and packaging.</li>
