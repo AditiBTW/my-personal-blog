@@ -143,7 +143,7 @@
 								Other teams working on user-service and payment-service had merged their feature changes in respective repos.
 								The newly added changes had logic which triggered different events based on the value received in <i>notified_by</i> of NotifyEvent.
 							</li>
-							These set of events triggered using values of <i>notified_by</i> in user-service and payment-service were then consumed by another set of microservices (observer-service, invoice-service).
+							These set of events triggered using values of <i>notified_by</i> in user-service and payment-service were then consumed by another set of microservices (gateway-service, invoice-service).
 							<li>
 								Another microservice, observer-service that was created to record and trace events which are consumed across various microservices (ui-service, db-service, payment-service ...) had now started consuming <i>notified_by</i> field values to analyse for occurance of different configuration values.
 							</li>
