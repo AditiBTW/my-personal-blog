@@ -88,25 +88,57 @@
 			<!-- Begin Post Content -->
 			<div class="article-post">
 				<body>
-					In this blog post, I'll be sharing my learnings on building microservices using concepts of Reactive Programming.
-                    <br/>
-                    My previous project was based on a business use case where a service was expected to act as a core capability to be consumed by other services thereby improving user experience.
-					<br/>
-                    Context :
-					<br/>
-                    Existing business has different product services with their respective user journeys.
-                    There are some steps in those user journeys which can be developed as a core capability as they are replicated across different products and partner services.
-                    <br/>
-                    When working towards providng seamless user experience to end-customers and for other partners, the business faces following hurdles:<br/>
-                    1. Architecture design makes it difficult to intergrate with new partners and products while catering to exising users.<br/>
-                    2. Repetitive steps across user journeys makes it difficult to effectively update / enhance those steps for uniform user experience across products.
-                    <br/>
-                    Core requirement :<br/>
-                    1. Improve onboarding for new partners & products' services by having an easily configurable setup.<br/>
-                    2. Extract common steps and create microservice whihc is developed as a core capability for products to enhanced as required and same gets reflected across different services.
-					<br/> It can be in future developed for partners to consume directly in their products services.
-
-
+					<p>
+						In this blog post, I'll be sharing my learnings on building microservices using concepts of Reactive Programming.
+						<br/>
+						My previous project was based on a business use case where a service was expected to act as a core capability to be consumed by other services thereby improving user experience.
+						<br/>
+					</p>
+					<h5>
+						Business Background
+					</h5>
+					<p>
+						Existing business has different product services with their respective user journeys.
+						There are some steps in those user journeys which can be developed as a core capability as they are replicated across different products and partner services.
+					</p>
+					<h5>
+						Business Use case
+					</h5>
+					<p>
+						When working towards providing a seamless user experience to end-customers and for other partners, the business faces following hurdles:
+						<ul>
+							<li>
+								Existing architecture design makes it difficult to intergrate with new partners and products while catering to exising users.
+							</li>
+							<li>
+								Repetitive steps across user journeys makes it difficult to effectively update / enhance those steps for uniform user experience across products.
+							</li>
+						</ul>
+						</p>
+					<h5>
+						Business requirements
+					</h5>
+					<p>
+						<ul>
+							<li>
+								Improve onboarding for new business partners by having an easily configurable setup.
+							</li>
+							<li>
+								To develop microservices which can be scaled independently.(irrespective partner and products)
+							</li>
+							<li>
+								Extract common steps in existing application
+							</li>
+							<ul>
+								<li>To create a microservice which can be developed as a core component consumed by respective products and services</li>
+								<li>To enhance created microservice which helps reflect enhancements across respective services.</li>
+								<li>To independently upgrade products and services for different business partners.</li>
+							</ul>
+							<li>
+								The application can be in future developed and enhanced to facilitate business partners in directly consuming their products & services.
+							</li>
+						</ul>
+					</p>
 				</body>
 			</div>
 			<!-- End Post Content -->
