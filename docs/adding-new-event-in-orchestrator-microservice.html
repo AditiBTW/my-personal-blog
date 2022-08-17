@@ -91,20 +91,20 @@
 					Hi everyone, in this blog I'll be sharing how we added new event in our orchestrator microservice.
 					 <br/>
 					 <p>
-						Let's understand our business use-case using ShoppersPoint, an e-commerse application.
-					 	ShoppersPoint has many microservices that interact with one another using events.
+						Let's understand our business use-case using an e-commerse application.
+						This application has many microservices that interact with one another using events.
 						Kafka is used as message broker to stream the events being produced and consumed within these microservices.
 					 </p>
 					 <h4>Application Scenario</h4>
 					 <p>
-						At ShoppersPoint, customers can browse through a range products and services listed on their website, select desired products and add them to cart, book a vendor from list of vendors for services like house-keeping, baby-sitting... and add the booked services to cart, avail offers & discounts on a variety of products and services.
+						Using this application, customers can browse through a range products and services listed on their website, select desired products and add them to cart, book a vendor from list of vendors for services like house-keeping, baby-sitting... and add the booked services to cart, avail offers & discounts on a variety of products and services.
 						Customers can check all items in cart, make any modifications if necessary and proceed to checkout.
-						During checkout, customer gets a prompt to register/login, in case of a new customer or if any customer has not logged into their ShoppersPoint account.
-						Upon registering/ logging into ShoppersPoint account, the customer proceeds to pay for the items in the cart with offers/discounts if applicable.
+						During checkout, customer gets a prompt to register/login, in case of a new customer or if any customer has not logged into their account.
+						Upon registering/ logging into account, the customer proceeds to pay for the items in the cart with offers/discounts if applicable.
 					 </p>
 					 <h4>Problem Statement</h4>
 					 <p>
-						ShoppersPoint wants to enhance customer experience by increasing responsiveness of the currrent application. ShoppersPoint can be segregated into various microservices like catalog service, user service, cart service, payment service etc.
+						The business wants to enhance customer experience by increasing responsiveness of the currrent application. The application can be segregated into various microservices like catalog service, user service, cart service, payment service etc.
 						Analysing the interactions between these microservices, we found that
 						<ul>
 							<li>There is a central component called orchestrator which coordinates the activities of other microservices. This component interacts with rest of the microservices using Kafka events.</li>
@@ -145,7 +145,7 @@
 					 </p>
 					 <h4>Impact on business</h4>
 					 <p>
-						The performance and responsiveness of ShoppersPoint application improved because of introduction of time limit for steps requiring user details from user-service.
+						The performance and responsiveness of the application improved because of introduction of time limit for steps requiring user details from user-service.
 						<br/>
 						Improved customer experience as they had minimalistic waiting time and got instant feedback on whether their current step had executed successfully or not.
 						In case of failure due to time-limit exceeded, they were able to successfully retry that step and get acknowledgement / success feedback.
