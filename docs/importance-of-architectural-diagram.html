@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="assets/img/favicon.ico">
+<title>My Personal Blog</title>
+<!-- Bootstrap core CSS -->
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link href="assets/css/mediumish.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Begin Nav
+================================================== -->
+<nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
+<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="container">
+	<!-- Begin Logo -->
+	<a class="navbar-brand" href="index.html">
+	<img src="assets/img/logo.png" alt="logo">
+	</a>
+	<!-- End Logo -->
+	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+		<!-- Begin Menu -->
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item active">
+			<a class="nav-link" href="index.html">Stories <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="index.html">Post</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="author.html">Author</a>
+			</li>
+		</ul>
+		<!-- End Menu -->
+		<!-- Begin Search -->
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search">
+			<span class="search-icon"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M20.067 18.933l-4.157-4.157a6 6 0 1 0-.884.884l4.157 4.157a.624.624 0 1 0 .884-.884zM6.5 11c0-2.62 2.13-4.75 4.75-4.75S16 8.38 16 11s-2.13 4.75-4.75 4.75S6.5 13.62 6.5 11z"></path></svg></span>
+		</form>
+		<!-- End Search -->
+	</div>
+</div>
+</nav>
+<!-- End Nav
+================================================== -->
+
+<!-- Begin Article
+================================================== -->
+<div class="container">
+	<div class="row">
+
+		<!-- Begin Post -->
+		<div class="col-md-8 col-md-offset-2 col-xs-12">
+			<div class="mainheading">
+
+				<!-- Begin Top Meta -->
+				<div class="row post-top-meta">
+					<div class="col-md-2">
+						<a href="author.html"><img class="author-thumb" src="assets/img/logo/pen-writing.jpg" alt="Aditi Bhonsle"></a>
+					</div>
+					<div class="col-md-10">
+						<a class="link-dark" href="author.html">Aditi Bhonsle</a>
+						<span class="author-description">Author</span><br/>
+						<span class="post-date">16 January 2023</span><span class="dot"></span><span class="post-read">6 min read</span>
+					</div>
+				</div>
+				<!-- End Top Menta -->
+
+				<h1 class="posttitle">Importance of designing architectural design before jumping on to coding?</h1>
+
+			</div>
+
+			<!-- Begin Featured Image -->
+			<img class="featured-image img-fluid" src="assets/img/demopic/thought-catalog-UK78i6vK3sc-unsplash.jpg" alt="">
+			<!-- End Featured Image -->
+
+			<!-- Begin Post Content -->
+			<div class="article-post">	
+				<body>
+                    <p>
+                        In this blog post, I'll be sharing my learnings on why it is important to make architectural design before coding.
+						<br/>	
+					</p>
+                       
+
+                        <h4>What happens when we don't?</h4>
+					<p>
+                        <ul>
+							<ul>
+								Introduces following difficulties:
+								<li>Unable to track the communication of the major technical decisions to team.</li>
+								<li>Losing records of why particular way / method was introduced i.e. important techincal consideration made over time in response to various technical setbacks.</li>
+								<li>Unclear & Undefined boundaries and interactions between different system components.</li>
+								<li>Inability to document the architectural enhancements made on the system/product being developed.</li>
+								<li>Unable to record the communication with key stakeholders on the future enhancement and scalablility of system/ product.</li>
+								<li>Unable to demonstrate /showcase, the system overview to business owners and other stakeholders.</li>
+								<li>Inefficient system interactions can result in introducing bugs and unnecessary behaviours in system/product.</li>
+								<li>Lack of sound reasoning of system design can also result in challenges while onboarding new joinees.</li>
+							</ul>
+						</ul> 
+						Now that we've seen the dire consequences of not having done the architectural designing prior to coding, let's check what advantages 
+						</p>
+                        <h4>Benefits of architectural design</h4> 
+						<p>
+							<ul>
+								<li>Helps think through components that are a part of the problem statement/ business use case.</li>
+								<ul>
+									<li>users</li>
+									<ul>
+										<li>end user: end-customers</li>
+										<li>business: owners, attendents</li>
+										<li>system: automated, async, sync, third party.. eg notification, authentication</li>
+									</ul>
+									<li>services</li>
+								</ul>
+								<li>Understand the boundaries of various components of the system.</li>
+								<li>Interaction of various components of system, in terms of different services and user journeys.</li>
+								<li>Define a clear picture so the relations between various classes and components structure is well understood.</li>
+								<li>Helps in giving a glimpse of the system architecture evolution journey over time to onboarding team members.</li>
+								<li>document key technical events in response to various setbacks or client demands</li>
+								<ul>
+									<li>Identify technical decisions in response to:</li>
+									<ul>
+										<li>Monolith vs Microservices architectures.</li>
+										<li>Domain boundaries of services/ components.</li>
+										<li>Communication style and patterns between various components of system.</li>
+										<li>Expected behaviour with various users of system/product.</li>
+										<li>Type of data generated and consumed across the components</li>
+										<li>Databases needed to store revelant data to ensure proper functioning</li>
+										<li>Identify points of system failures and find ways to overcome them</li>
+										<ul>
+											<li>Address them according to degrees of failure</li>
+										</ul>
+										<li>Infrastructre considerations.</li>
+										<li>Understand pros and cons of various approaches</li>
+										<ul>
+											<li>Event-driven</li>
+											<li>gRPC</li>
+											<li>Rest</li>
+										</ul>
+										<li>Pattern to follow to gain best advantage of microservice architecture.</li>
+										<li>Understand user flow</li>
+										<ul>
+											<li>success</li>
+											<li>failure</li>
+											<li>update/modify</li>
+											<li>delete/remove</li>
+										</ul>
+									</ul>
+								</ul>
+								<li>Demonstrate progress of architectural enhancements with stakeholders and business owners.</li>
+								<li>Helps check understanding of business use cases with key stakeholders</li>
+								<ul>
+									<li>Assists in better knowledge sharing of the associated interaction of components with stake holders.</li>
+									<li>Helps identify which pain points needs to be addressed (immediately and can be settled later [put into backlog])</li>
+									<li>Verify understanding of how the system is expected to behave with stakeholders.</li>
+									<li>Uncover various blind spots</li>
+									<li>Undersand the scale and magnitude of system</li>
+									<ul>
+										<li>Associated stages in which system/product can be build to incorporate features to address business pain points</li>
+									</ul>
+								</ul>
+								<ul>
+									Some examples:
+									<li>system for raising ticket (helpdesk)</li>
+									<li>booking system (hotel, movie, transport- road/water/air ways, ...)</li>
+								</ul>
+							</ul>
+						</p>
+                    </p>
+				</body>
+			</div>
+			<!-- End Post Content -->
+
+			<!-- Begin Tags -->
+			<div class="after-post-tags">
+				<ul class="tags">
+					<li><a href="#">Design</a></li>
+					<li><a href="#">Growth Mindset</a></li>
+					<li><a href="#">Productivity</a></li>
+					<li><a href="#">Personal Growth</a></li>
+				</ul>
+			</div>
+			<!-- End Tags -->
+
+		</div>
+		<!-- End Post -->
+
+	</div>
+</div>
+<!-- End Article
+================================================== -->
+
+<div class="hideshare"></div>
+
+
+<!-- Begin Footer
+================================================== -->
+<div class="container">
+	<div class="footer">
+		<p class="pull-left">
+			 Copyright &copy; 2022 My Personal Blog
+		</p>
+		<p class="pull-right">
+			Mediumish Theme taken from <a target="_blank" href="https://www.wowthemes.net">WowThemes.net</a>
+		</p>
+		<div class="clearfix">
+		</div>
+	</div>
+</div>
+<!-- End Footer
+================================================== -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="assets/js/mediumish.js"></script>
+</body>
+</html>
